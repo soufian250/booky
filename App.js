@@ -1,15 +1,27 @@
-import { View, Text } from "react-native";
+import {Button, Text,SafeAreaView,StyleSheet,Alert, Platform, StatusBar } from "react-native";
 
 export default function App() {
+  
+  const styles = StyleSheet.create({
+    container:{
+      flex:1,
+      backgroundColor: "#afbbda",
+      paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    }
+  });
+  
+
+  const HandleClick = ()=>{
+    Alert.alert('Tilte','Message',[
+      {text:"Yes", onPress:()=>alert(4)},
+      {text:"No", onPress:()=>console.log('No')}
+    ])
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Button title="Click me" onPress={ HandleClick}/>
+    </SafeAreaView>
+
   );
 }
